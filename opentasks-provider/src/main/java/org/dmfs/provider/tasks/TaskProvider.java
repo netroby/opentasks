@@ -58,6 +58,7 @@ import org.dmfs.provider.tasks.processors.lists.ListCommitProcessor;
 import org.dmfs.provider.tasks.processors.tasks.AutoCompleting;
 import org.dmfs.provider.tasks.processors.tasks.Instantiating;
 import org.dmfs.provider.tasks.processors.tasks.Moving;
+import org.dmfs.provider.tasks.processors.tasks.Originating;
 import org.dmfs.provider.tasks.processors.tasks.Relating;
 import org.dmfs.provider.tasks.processors.tasks.Searchable;
 import org.dmfs.provider.tasks.processors.tasks.TaskCommitProcessor;
@@ -181,7 +182,8 @@ public final class TaskProvider extends SQLiteContentProvider implements OnAccou
     {
         mAuthority = AuthorityUtil.taskAuthority(getContext());
 
-        mTaskProcessorChain = new Validating(new AutoCompleting(new Relating(new Instantiating(new Searchable(new Moving(new TaskCommitProcessor()))))));
+        mTaskProcessorChain = new Validating(
+                new AutoCompleting(new Relating(new Instantiating(new Searchable(new Moving(new Originating(new TaskCommitProcessor())))))));
 
         mListProcessorChain = new org.dmfs.provider.tasks.processors.lists.Validating(new ListCommitProcessor());
 
@@ -1302,6 +1304,8 @@ public final class TaskProvider extends SQLiteContentProvider implements OnAccou
                 return ContentResolver.CURSOR_ITEM_BASE_TYPE + "/org.dmfs.tasks." + Tasks.CONTENT_URI_PATH;
             case INSTANCES:
                 return ContentResolver.CURSOR_DIR_BASE_TYPE + "/org.dmfs.tasks." + Instances.CONTENT_URI_PATH;
+            case INSTANCE_ID:
+                return ContentResolver.CURSOR_ITEM_BASE_TYPE + "/org.dmfs.tasks." + Instances.CONTENT_URI_PATH;
             default:
                 throw new IllegalArgumentException("Unsupported URI: " + uri);
         }
