@@ -21,8 +21,8 @@ import android.database.Cursor;
 
 import org.dmfs.provider.tasks.model.adapters.BinaryFieldAdapter;
 import org.dmfs.provider.tasks.model.adapters.BooleanFieldAdapter;
-import org.dmfs.provider.tasks.model.adapters.DateTimeIterableFieldAdapter;
 import org.dmfs.provider.tasks.model.adapters.DateTimeFieldAdapter;
+import org.dmfs.provider.tasks.model.adapters.DateTimeIterableFieldAdapter;
 import org.dmfs.provider.tasks.model.adapters.DurationFieldAdapter;
 import org.dmfs.provider.tasks.model.adapters.IntegerFieldAdapter;
 import org.dmfs.provider.tasks.model.adapters.LongFieldAdapter;
